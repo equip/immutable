@@ -1,12 +1,14 @@
 <?php
 
-namespace EquipTests\Data\Traits;
+namespace Equip\Immutable\Fixture;
 
-use Equip\Data\ArraySerializableInterface;
-use Equip\Data\Traits\ImmutableValueObjectTrait;
+use Equip\Immutable\ArraySerializableInterface;
+use Equip\Immutable\ArraySerializableTrait;
+use Equip\Immutable\ImmutableValueObjectTrait;
 
 class NestedImmutableValueObject implements ArraySerializableInterface
 {
+    use ArraySerializableTrait;
     use ImmutableValueObjectTrait;
 
     private $parent;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Equip\Data;
+namespace Equip\Immutable;
 
 interface ArraySerializableInterface
 {
     /**
-     * Get the values of the object as an array
+     * Get the values of the object as an array.
      *
      * @return array
      */

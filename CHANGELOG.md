@@ -7,30 +7,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 _..._
 
-## 2.3.0 - 2016-04-04
-
-- Split `ProtectedValueObjectTrait` functionality from `ImmutableValueObjectTrait`
-
-## 2.2.0 - 2016-03-31
-
-* Add `PartialRepositoryInterface`
-
-## 2.1.0 - 2016-03-25
-
-* Modify `RepositoryInterface` to support `Traversable` return values
-
-## 2.0.0 - 2016-03-24
-
-* Add `findByIds()` method to `RepositoryInterface`
-
-## 1.2.0 - 2016-01-19
-
-* Add `CountRepositoryInterface`
-
-## 1.1.0 - 2016-01-14
-
-* Add `DiffableEntityTrait`
-
 ## 1.0.0 - 2016-01-05
 
-* Changed from `Spark` to `Equip` namespace
+* Extract immutable traits from `equip/data` package

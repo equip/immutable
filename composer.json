@@ -1,6 +1,6 @@
 {
-    "name": "equip/data",
-    "description": "Interfaces and traits for creating a data layer",
+    "name": "equip/immutable",
+    "description": "Interfaces and traits for immutable value objects",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,24 +9,21 @@
             "homepage": "https://github.com/equip"
         }
     ],
-    "replace": {
-        "sparkphp/data": "self.version"
-    },
     "require": {
-        "php": ">=5.5",
-        "nesbot/carbon": "^1"
+        "php": ">=5.5"
     },
-    "require-dev": {
+    "suggest": {
         "phpunit/phpunit": "^4.8|^5.0"
     },
     "autoload": {
         "psr-4": {
-            "Equip\\Data\\": "src/"
+            "Equip\\Immutable\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EquipTests\\Data\\": "tests/"
+            "Equip\\Immutable\\": "tests/",
+            "Equip\\Immutable\\Fixture\\": "tests/_fixture/"
         }
     }
 }

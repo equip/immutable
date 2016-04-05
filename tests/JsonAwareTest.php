@@ -1,10 +1,13 @@
 <?php
 
-namespace EquipTests\Data\Traits;
+namespace Equip\Immutable;
 
-class JsonAwareTest extends \PHPUnit_Framework_TestCase
+use Equip\Immutable\Fixture\JsonAware;
+use PHPUnit_Framework_TestCase as TestCase;
+
+class JsonAwareTest extends TestCase
 {
-    public function testJson()
+    public function testEncodeDecode()
     {
         $object = new JsonAware;
 
@@ -22,6 +25,5 @@ class JsonAwareTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($object->id, $data['id']);
         $this->assertSame($object->name, $data['name']);
-
     }
 }

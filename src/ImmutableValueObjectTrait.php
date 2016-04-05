@@ -1,14 +1,9 @@
 <?php
 
-namespace Equip\Data\Traits;
-
-use Equip\Data\ArraySerializableInterface;
-use RuntimeException;
+namespace Equip\Immutable;
 
 trait ImmutableValueObjectTrait
 {
-    use ProtectedValueObjectTrait;
-
     /**
      * Hydrate the object with new values
      *
@@ -137,20 +132,5 @@ trait ImmutableValueObjectTrait
     public function has($key)
     {
         return property_exists($this, $key);
-    }
-
-    /**
-     * Get the current object values as an array
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_map(static function ($value) {
-            if ($value instanceof ArraySerializableInterface) {
-                $value = $value->toArray();
-            }
-            return $value;
-        }, get_object_vars($this));
     }
 }

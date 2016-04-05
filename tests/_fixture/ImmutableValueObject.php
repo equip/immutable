@@ -1,12 +1,14 @@
 <?php
 
-namespace EquipTests\Data\Traits;
+namespace Equip\Immutable\Fixture;
 
-use Equip\Data\ArraySerializableInterface;
-use Equip\Data\Traits\ImmutableValueObjectTrait;
+use Equip\Immutable\ArraySerializableTrait;
+use Equip\Immutable\ArraySerializableInterface;
+use Equip\Immutable\ImmutableValueObjectTrait;
 
 class ImmutableValueObject implements ArraySerializableInterface
 {
+    use ArraySerializableTrait;
     use ImmutableValueObjectTrait;
 
     private $id;

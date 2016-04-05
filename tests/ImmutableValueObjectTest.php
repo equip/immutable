@@ -1,8 +1,13 @@
 <?php
 
-namespace EquipTests\Data\Traits;
+namespace Equip\Immutable;
 
-class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
+use Equip\Immutable\Fixture\ImmutableValueObject;
+use Equip\Immutable\Fixture\NestedImmutableValueObject;
+use Equip\Immutable\Fixture\TypelessImmutableValueObject;
+use PHPUnit_Framework_TestCase as TestCase;
+
+class ImmutableValueObjectTest extends TestCase
 {
     public function testConstruction()
     {
@@ -19,7 +24,7 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
 
         foreach (array_keys($data) as $key) {
             $this->assertTrue($object->has($key));
-            $this->assertSame($data[$key], $object->$key);
+            $this->assertSame($data[$key], $object->toArray()[$key]);
         }
     }
 
@@ -49,10 +54,12 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
 
         $object = new ImmutableValueObject($data);
 
+        $values = $object->toArray();
+
         $this->assertNotSame($data, $object->toArray());
 
-        $this->assertSame(10, $object->id);
-        $this->assertSame('1337', $object->name);
+        $this->assertSame(10, $values['id']);
+        $this->assertSame('1337', $values['name']);
 
         // Without type coercion, input data is exactly the same
         $object = new TypelessImmutableValueObject($data);
@@ -84,36 +91,6 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
-     */
-    public function testSetThrowsException()
-    {
-        $object = new ImmutableValueObject;
-        $object->name = 'Cheery Charlie';
-    }
-
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
-     */
-    public function testUnsetThrowsException()
-    {
-        $object = new ImmutableValueObject;
-        unset($object->name);
-    }
-
-    public function testPropertyIsSet()
-    {
-        $object = new ImmutableValueObject([
-            'name' => 'Eager Erin',
-        ]);
-
-        $this->assertFalse(isset($object->id));
-        $this->assertTrue(isset($object->name));
-    }
-
     public function testWithData()
     {
         $data = [
@@ -126,8 +103,8 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotSame($object, $copied);
 
-        $this->assertSame('Jonny Jones', $object->name);
-        $this->assertSame('JJ', $copied->name);
+        $this->assertSame('Jonny Jones', $object->toArray()['name']);
+        $this->assertSame('JJ', $copied->toArray()['name']);
     }
 
     public function testToArrayRecursion()

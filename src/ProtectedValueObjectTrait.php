@@ -1,6 +1,6 @@
 <?php
 
-namespace Equip\Data\Traits;
+namespace Equip\Immutable;
 
 use RuntimeException;
 
